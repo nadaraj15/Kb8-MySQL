@@ -5,7 +5,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: azure-disk
+  storageClassName: alicloud-disk-ssd
   capacity:
     storage: 20Gi
   accessModes:
@@ -18,7 +18,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
-  storageClassName: azure-disk
+  storageClassName: alicloud-disk-ssd
   accessModes:
     - ReadWriteOnce
   resources:
