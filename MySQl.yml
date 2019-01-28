@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql   # will be used as a value in
-  labels:                 # mediawiki_DB_HOST in Mediawiki-deploy.yml
-    app: mediawiki
+  labels:                 # mysql_DB_HOST in mysql-deploy.yml
+    app: mysql
 spec:
   ports:
     - protocol: TCP
@@ -11,27 +11,27 @@ spec:
       targetPort: 3306
   type: LoadBalancer
   selector:
-    app: mediawiki
+    app: mysql
     tier: mysql
 ---
 apiVersion:  apps/v1beta2 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: mediawiki-mysql
+  name: mysql-mysql
   labels:
-    app: mediawiki
+    app: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mediawiki
+      app: mysql
       tier: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mediawiki
+        app: mysql
         tier: mysql
     spec:
       containers:
